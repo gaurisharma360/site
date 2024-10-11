@@ -82,6 +82,23 @@
                 width: 50%; /* Adjust icon size on mobile */
             }
         }
+            /* Flexbox for the section */
+            .flex-section {
+                display: flex;
+                flex-wrap: wrap; /* Ensure wrapping */
+                align-items: flex-start; /* Align items at the top */
+                gap: 20px; /* Optional: Adjust spacing between elements */
+            }
+
+            .flex-section img {
+                max-width: 100%;
+                height: auto;
+                flex: 1 1 40%; /* Ensure the image takes up appropriate space */
+            }
+
+            .flex-section div {
+                flex: 1 1 50%; /* Ensure text section takes up appropriate space */
+            }
 
     </style>
 </head>
@@ -122,27 +139,28 @@
         <a href="mailto:gaurisharma360@gmail.com" class="contact-button">---Contact Me---</a>
     </section>
 
-    <section>
-        <img src="photonew.jpg" alt="Description of the image" width="750" height="400" style="float:left">
-        <h2>About Me</h2>
-        <p>
-            <strong>My Experience</strong><br>
-            I hold a Bachelor of Technology degree in Computer Science and Engineering with Data Science as my minor specialization.
-            I also have a number of internships, publications, and projects under my belt.
-        </p>
-
-        <p>
-            <strong>My Skillset</strong><br>
-            I possess a sharp eye for detail. I work well under pressure and can produce high-quality work in short periods of time.
-            I have strong interpersonal skills and can work with a wide variety of people.
-        </p>
-
-        <p>
-            <strong>My Goals</strong><br>
-            I am looking for an opportunity to work with a team. I want to align myself with a company I believe in and where I can create positive change.
-            I am always looking to learn more and am more open to taking on challenging projects.
-        </p>
+    <section class="flex-section">
+        <img src="photonew.jpg" alt="Description of the image">
+        <div>
+            <h2>About Me</h2>
+            <p>
+                <strong>My Experience</strong><br>
+                I hold a Bachelor of Technology degree in Computer Science and Engineering with Data Science as my minor specialization.
+                I also have a number of internships, publications, and projects under my belt.
+            </p>
+            <p>
+                <strong>My Skillset</strong><br>
+                I possess a sharp eye for detail. I work well under pressure and can produce high-quality work in short periods of time.
+                I have strong interpersonal skills and can work with a wide variety of people.
+            </p>
+            <p>
+                <strong>My Goals</strong><br>
+                I am looking for an opportunity to work with a team. I want to align myself with a company I believe in and where I can create positive change.
+                I am always looking to learn more and am more open to taking on challenging projects.
+            </p>
+        </div>
     </section>
+    
 
     <section>
         <div class="icon-container">
@@ -169,5 +187,7 @@
 
 </body>
 </html>
+
+
 
 
