@@ -75,26 +75,52 @@
             height: auto;
         }
 
-        /* Flexbox for the section */
+        /* Desktop styles */
         .flex-section {
             display: flex;
-            flex-wrap: wrap;
-            align-items: flex-start;
-            gap: 20px;
+            align-items: flex-start; /* Align items at the top */
+            gap: 20px; /* Space between image and text */
+            padding: 50px; /* Optional: padding for desktop */
         }
 
+        /* Image styling for desktop */
         .flex-section img {
-            max-width: 100%;
-            height: auto;
-            flex: 1 1 40%;
+            width: 40%;  /* Make the image smaller on desktop */
+            height: auto; /* Maintain aspect ratio */
+            flex: 0 1 auto; /* Keep the image width consistent */
         }
 
+        /* Text content styling for desktop */
         .flex-section div {
-            flex: 1 1 50%;
+            flex: 1; /* Allow the text section to take the remaining space */
+            text-align: center; /* Align text to the left */
+        }
+        .flex-section div h2 {
+            text-align: center; /* Center headings */
         }
 
-        /* Media query for mobile view */
-        @media (max-width: 768px) {
+        .flex-section div p {
+            text-align: center; /* Center paragraph text */
+        }
+
+
+        /* Responsive media query for mobile */
+        @media (max-width: 768px) 
+        {
+            .flex-section {
+                flex-direction: column; /* Stack the image and text vertically on mobile */
+                padding: 20px; /* Optional: less padding for mobile */
+            }
+
+            .flex-section img {
+                width: 100%; /* Make the image full width on mobile */
+                height: auto; /* Maintain aspect ratio */
+            }
+
+            .flex-section div {
+                text-align: center; /* Optional: center the text on mobile */
+            }
+        
             /* Hide video on mobile */
             .video-container {
                 display: none;
@@ -215,3 +241,4 @@
     </script>
 </body>
 </html>
+
