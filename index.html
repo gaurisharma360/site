@@ -27,14 +27,12 @@
 
         /* Alternate background colors for sections 1, 3, and 5 */
         section:nth-child(odd) {
-            
-            background-color: rgb(229, 218, 208);
+            background-color:#fff;
         }
 
         /* White background for sections 2 and 4 */
         section:nth-child(even) {
-            background-color: #fff;
-            
+            background-color:rgb(229, 218, 208);
         }
 
         /* Style for the Contact Me button */
@@ -44,21 +42,77 @@
             padding: 10px 20px;
             background-color: #fff;
             text-decoration: none;
-            border: 2px solid #000; /* Add a black border */
+            border: 2px solid #000;
             border-radius: 5px;
             font-weight: bold;
-            color: #000; /* Set font color to black */
-            height:2.5vh;
-            width:20%
+            color: #000;
+            height: 2.5vh;
+            width: 20%;
         }
+
+        /* Flexbox for the icon section */
+        .icon-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px; /* Space between icons */
+        }
+
+        .icon-container a img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Media query for smaller screens */
+        @media (max-width: 768px) {
+            section {
+                padding: 50px;
+            }
+
+            .contact-button {
+                width: 80%; /* Make the button wider on small screens */
+            }
+
+            .icon-container {
+                flex-direction: column; /* Stack icons vertically */
+                align-items: center;
+            }
+
+            .icon-container a {
+                width: 50%; /* Adjust icon size on mobile */
+            }
+        }
+
     </style>
 </head>
 <body>
 
-    <video autoplay muted loop>
+    <video id="random-video" poster="thumbnail.jpg" preload="metadata" autoplay muted loop>
         <source src="quotes.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
+    
+    <script>
+        const video = document.getElementById('random-video');
+    
+        // Set random start time when metadata is loaded
+        video.addEventListener('loadedmetadata', () => {
+            const randomStartTime = Math.random() * video.duration;
+            video.currentTime = randomStartTime;
+        });
+    
+        // Lazy load video when it comes into view (optional)
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    video.play();
+                    videoObserver.unobserve(video);
+                }
+            });
+        });
+    
+        videoObserver.observe(video);
+    </script>
 
     <section>
         <h2> Gauri Sharma </h2>
@@ -67,8 +121,9 @@
         <!-- Contact Me button -->
         <a href="mailto:gaurisharma360@gmail.com" class="contact-button">---Contact Me---</a>
     </section>
+
     <section>
-        <img src="photonew.jpg" alt="Description of the image" width="750" height="400" style="float:left" >
+        <img src="photonew.jpg" alt="Description of the image" width="750" height="400" style="float:left">
         <h2>About Me</h2>
         <p>
             <strong>My Experience</strong><br>
@@ -90,27 +145,29 @@
     </section>
 
     <section>
-        
-      <a href="https://www.researchgate.net/profile/Gauri-Sharma-19" >
-        <img src="researchgate.jpg" alt="Description of the image" width="200" height="200" >
-      </a>
-      <a href="https://scholar.google.com/citations?user=gZtitB0AAAAJ&hl=en" >
-        <img src="scholar.jpg" alt="Description of the image" width="200" height="200" >
-      </a>
-       <a href="https://www.hackerrank.com/profile/gaurisharma360" >
-        <img src="hackerrank.jpg" alt="Description of the image" width="200" height="200" >
-    </a>
-        <a href="https://drive.google.com/file/d/1q44Xz7X1KAY7jp1ov1t_j5zQiNMsBbhu/view?usp=sharing" >
-         <img src="work.jpg" alt="Description of the image"  width="200" height="200" >
-         </a>
-       <a href="https://auth.geeksforgeeks.org/user/gaurisharma360/articles#" >
-        <img src="geeks.jpg" alt="Description of the image" width="200" height="200" >
-    </a>
-      <a href="https://github.com/gaurisharma360" >
-        <img src="github.jpg" alt="Description of the image" width="250" height="200" >
-        </a>
+        <div class="icon-container">
+            <a href="https://www.researchgate.net/profile/Gauri-Sharma-19">
+                <img src="researchgate.jpg" alt="ResearchGate" width="200" height="200">
+            </a>
+            <a href="https://scholar.google.com/citations?user=gZtitB0AAAAJ&hl=en">
+                <img src="scholar.jpg" alt="Google Scholar" width="200" height="200">
+            </a>
+            <a href="https://github.com/gaurisharma360">
+                <img src="github.jpg" alt="GitHub" width="200" height="200">
+            </a>
+            <a href="https://www.hackerrank.com/profile/gaurisharma360"></a>
+            <img src="hackerrank.jpg" alt="HackerRank" width="200" height="200">
+            </a>
+            <a href="https://auth.geeksforgeeks.org/user/gaurisharma360/articles#">
+                <img src="geeks.jpg" alt="GeeksforGeeks" width="250" height="200">
+            </a>
+            <a href="https://drive.google.com/file/d/1q44Xz7X1KAY7jp1ov1t_j5zQiNMsBbhu/view?usp=sharing"></a>
+                <img src="work.jpg" alt="Work Sample" width="250" height="250">
+            </a>
+        </div>
     </section>
-    
 
 </body>
 </html>
+
+
