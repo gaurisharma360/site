@@ -11,31 +11,44 @@
             background-color: #f0f0f0;
         }
 
+        /* Video styles for desktop */
+        .video-container {
+            width: 100%;
+            height: 80vh;
+            display: block;
+        }
+
         video {
             width: 100%;
-            height: 80vh; /* Adjust the height as needed */
-            object-fit: cover; /* Ensures the video covers the entire container */
-            border: none; /* Remove the border */
-            margin: 0; /* Remove default margin */
+            height: 80vh;
+            object-fit: cover;
+            border: none;
+            margin: 0;
         }
-        
+
+        /* Mobile image styles */
+        .mobile-image {
+            display: none;
+            width: 100%;
+            height: 80vh;
+            object-fit: cover;
+        }
+
+        /* Sections */
         section {
             padding: 110px;
             text-align: center;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        /* Alternate background colors for sections 1, 3, and 5 */
         section:nth-child(odd) {
             background-color:#fff;
         }
 
-        /* White background for sections 2 and 4 */
         section:nth-child(even) {
             background-color:rgb(229, 218, 208);
         }
 
-        /* Style for the Contact Me button */
         .contact-button {
             display: block;
             margin: 20px auto;
@@ -50,12 +63,11 @@
             width: 20%;
         }
 
-        /* Flexbox for the icon section */
         .icon-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 20px; /* Space between icons */
+            gap: 20px;
         }
 
         .icon-container a img {
@@ -63,79 +75,72 @@
             height: auto;
         }
 
-        /* Media query for smaller screens */
+        /* Flexbox for the section */
+        .flex-section {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .flex-section img {
+            max-width: 100%;
+            height: auto;
+            flex: 1 1 40%;
+        }
+
+        .flex-section div {
+            flex: 1 1 50%;
+        }
+
+        /* Media query for mobile view */
         @media (max-width: 768px) {
+            /* Hide video on mobile */
+            .video-container {
+                display: none;
+            }
+
+            /* Show image on mobile */
+            .mobile-image {
+                display: block;
+            }
+
             section {
                 padding: 50px;
             }
 
             .contact-button {
-                width: 80%; /* Make the button wider on small screens */
+                width: 80%;
             }
 
             .icon-container {
-                flex-direction: column; /* Stack icons vertically */
+                flex-direction: column;
                 align-items: center;
             }
 
             .icon-container a {
-                width: 50%; /* Adjust icon size on mobile */
+                width: 50%;
             }
         }
-            /* Flexbox for the section */
-            .flex-section {
-                display: flex;
-                flex-wrap: wrap; /* Ensure wrapping */
-                align-items: flex-start; /* Align items at the top */
-                gap: 20px; /* Optional: Adjust spacing between elements */
-            }
-
-            .flex-section img {
-                max-width: 100%;
-                height: auto;
-                flex: 1 1 40%; /* Ensure the image takes up appropriate space */
-            }
-
-            .flex-section div {
-                flex: 1 1 50%; /* Ensure text section takes up appropriate space */
-            }
-
     </style>
 </head>
 <body>
 
-    <video id="random-video" poster="thumbnail.jpg" preload="metadata" autoplay muted loop>
-        <source src="quotes.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    
-    <script>
-        const video = document.getElementById('random-video');
-    
-        // Set random start time when metadata is loaded
-        video.addEventListener('loadedmetadata', () => {
-            const randomStartTime = Math.random() * video.duration;
-            video.currentTime = randomStartTime;
-        });
-    
-        // Lazy load video when it comes into view (optional)
-        const videoObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    video.play();
-                    videoObserver.unobserve(video);
-                }
-            });
-        });
-    
-        videoObserver.observe(video);
-    </script>
+    <!-- Video for desktop -->
+    <div class="video-container">
+        <video id="random-video" poster="thumbnail.jpg" preload="metadata" autoplay muted loop>
+            <source src="quotes.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Random image for mobile -->
+    <img src="random-frame.jpg" alt="Random Frame from Video" class="mobile-image">
 
     <section>
         <h2> Gauri Sharma </h2>
         <h2>Always Eager to Learn Something New</h2>
         <p>To make a Difference</p>
-        <!-- Contact Me button -->
         <a href="mailto:gaurisharma360@gmail.com" class="contact-button">---Contact Me---</a>
     </section>
 
@@ -160,7 +165,6 @@
             </p>
         </div>
     </section>
-    
 
     <section>
         <div class="icon-container">
@@ -185,8 +189,30 @@
         </div>
     </section>
 
+    <script>
+        const video = document.getElementById('random-video');
+
+        // Set random start time when metadata is loaded
+        video.addEventListener('loadedmetadata', () => {
+            const randomStartTime = Math.random() * video.duration;
+            video.currentTime = randomStartTime;
+        });
+
+        // Lazy load video when it comes into view
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    video.play();
+                    videoObserver.unobserve(video);
+                }
+            });
+        });
+
+        videoObserver.observe(video);
+    </script>
 </body>
 </html>
+
 
 
 
